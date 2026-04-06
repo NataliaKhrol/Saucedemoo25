@@ -3,15 +3,15 @@ package tests;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-/**Данный тест класс....*/
+import static org.testng.Assert.*;
+
+/**
+ * Данный тест класс....
+ */
 
 public class LoginTest extends BaseTest {
-
     @Test
     public void checkLogin() {
-
         driver.get("https://www.saucedemo.com/");
         driver.findElement(By.cssSelector("[id='user-name']")).sendKeys("standard_user");
         driver.findElement(By.xpath("//*[@placeholder='Password']")).sendKeys("secret_sauce");
@@ -20,15 +20,15 @@ public class LoginTest extends BaseTest {
         assertEquals(title, "Products");
     }
 
-//TODO
     @Test
     public void checkIncorrectLogin() {
-
         driver.get("https://www.saucedemo.com/");
         driver.findElement(By.cssSelector("[id='user-name']")).sendKeys("locked_out_user");
         driver.findElement(By.xpath("//*[@placeholder='Password']")).sendKeys("secret_sauce");
         driver.findElement(By.cssSelector("[data-test='login-button']")).click();
         boolean isErrorMsgDisplayed = driver.findElement(By.xpath("//*[@data-test='error']")).isDisplayed();
         assertTrue(isErrorMsgDisplayed, "The error message fails to appear");
+        String errorMsg = driver.findElement(By.xpath("//*[@data-test='error']")).getText();
+        assertEquals(errorMsg, "ggg");
     }
 }
