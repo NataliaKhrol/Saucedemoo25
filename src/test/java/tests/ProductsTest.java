@@ -6,17 +6,21 @@ import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static user.UserFactory.withAdminPermission;
 
-public class TestProducts extends BaseTest {
+public class ProductsTest extends BaseTest {
     List<String> goodsList =
             List.of("Test.allTheThings() T-Shirt (Red)",
                     "Sauce Labs Onesie",
                     "Sauce Labs Fleece Jacket");
 
-    @Test
+    @Test(priority = 1, enabled = true)
     public void checkGoodsAdded() throws InterruptedException {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        System.out.println("Login4 running in thread: " + Thread.currentThread().getId());
+
+        loginPage
+                .open()
+                .login(withAdminPermission());
         assertTrue(productsPage.pageTitleDisplayed());
         assertEquals(productsPage.getGoodsQuantity(), 6);
 
