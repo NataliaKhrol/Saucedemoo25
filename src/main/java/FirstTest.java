@@ -41,4 +41,25 @@ public class FirstTest {
         String actualResult = trialCode(7);
         assertEquals(actualResult, "FAIL");
     }
+/*
+    @Test
+    public void checkAlert() {
+        driver.get("https://the-internet.herokuapp.com/context_menu");
+        Actions actions = new Actions(driver);
+        actions.contextClick(driver.findElement(By.id("hot-spot"))).perform();
+
+        Alert alert = driver.switchTo().alert();
+        String text = alert.getText();
+        System.out.println(text);
+        alert.accept();
+    }
+
+    @Test
+    public void checkFrame() {
+        driver.get("https://the-internet.herokuapp.com/iframe");
+        driver.switchTo().frame("mce_0_ifr");
+        String frameText = driver.findElement(By.tagName("p")).getText();
+        assertEquals(frameText, "Your content goes here.");
+        driver.switchTo().defaultContent();
+    }*/
 }
